@@ -1,0 +1,130 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #cfe8fc;
+  /* background-image: linear-gradient( 103.3deg,  rgba(252,225,208,1) 30%, rgba(255,173,214,1) 55.7%, rgba(162,186,245,1) 81.8% ); */
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.docBar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100%;
+  /* font-family: Gelasio; */
+  /* font-size: 18px; */
+  z-index: -1;
+}
+
+.docBar_content_1 {
+  display: block; /* Important to give the content a width */
+  margin-top: 100px;
+  width: 100%;
+  transform: translateX(100%); /* Animation start out of the screen */
+  /* Add the animation */
+  animation: documentMove_1 10s linear infinite /* infinite make reapeat the animation indefinitely */;
+}
+
+/* Create the animation */
+@keyframes documentMove_1 {
+  to { transform: translateX(-100%); }
+}
+
+.docBar_content_2 {
+  display: block; /* Important to give the content a width */
+  margin-top: 100px;
+  width: 100%;
+  transform: translateX(-100%); /* Animation start out of the screen */
+  /* Add the animation */
+  animation: documentMove_2 10s linear infinite /* infinite make reapeat the animation indefinitely */;
+}
+
+/* Create the animation */
+@keyframes documentMove_2 {
+  to { transform: translateX(100%); }
+}
+
+section {
+  height: 100vh;
+  scroll-snap-align: end;
+}
+
+.home-container {
+  scroll-snap-type: y mandatory;
+  overflow-y: scroll;
+  height: 100vh;
+}
+
+.one {
+  height: 90vh;
+}
+
+.two {
+  background-color: #FFEBCD;
+}
+
+.dropArea {
+  display: grid;
+  place-items: center;
+  background-color: rgb(203, 203, 203);
+  max-width: 100%;
+  margin: 0 auto;
+}
+.text{
+  border: dotted #555 3px;
+  max-width: 100%;
+  max-height: 100%;
+  padding: 10vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.uploadBox {
+  display: 'flex';
+  justify-content: 'center';
+  align-items: 'center';
+  color: '#585858';
+  /* width: 80%;
+  width: 80vw; */
+  width: 100%;
+    /* position: absolute;
+    top: 0;
+    left: 0; */
+    margin: 0 auto;
+  text-align: center;
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, .75),
+    rgba(255, 255, 255, .32)
+  );
+  box-shadow:
+    inset 4px 4px 5px 0 rgba(255, 255, 255, .25),
+    inset -4px -4px 5px 0 rgba(0, 0, 0, 0.125),
+    0 0 10px 1px rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(1em);
+}
+
+.uploadedFile {
+  color: '#585858';
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, .75),
+    rgba(255, 255, 255, .32)
+  );
+  box-shadow:
+    inset 4px 4px 5px 0 rgba(255, 255, 255, .25),
+    inset -4px -4px 5px 0 rgba(0, 0, 0, 0.125),
+    0 0 10px 1px rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(1em);
+}

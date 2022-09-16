@@ -1,0 +1,26 @@
+To upload provide buttons:
+- Each button can be added
+- On add post on API using fetch
+- Provide list with codes
+
+To receive:
+- Add code
+- Get redirected to page with pdf
+
+import requests
+
+headers = {
+    'accept': 'application/json',
+    'Authorization': 'Bearer 6OMUTFB.SN568YK-5V5472K-MQE7WP9-5RB0RXW',
+    # requests won't add a boundary if this header is set when you pass files=
+    # 'Content-Type': 'multipart/form-data',
+}
+
+files = {
+    'file': open('file.cpp', 'rb'),
+    'expires': (None, '2022-09-05T14:48:00.000Z'),
+    'maxDownloads': (None, '1'),
+    'autoDelete': (None, 'true'),
+}
+
+response = requests.post('https://file.io/', headers=headers, files=files)
