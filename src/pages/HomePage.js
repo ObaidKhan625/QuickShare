@@ -11,6 +11,8 @@ import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
+import { styled } from '@mui/material/styles';
+import Paper from '@mui/material/Paper';
 // import Pdf from '../assets/Saurabh_LinkedIn_SRE.pdf'
 
 // Pdf
@@ -24,6 +26,13 @@ const HomePage = () => {
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
     const Pdf = require('../assets/Pratik Mahankal Resume.pdf');
+    const Item = styled(Paper)(({ theme }) => ({
+        backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+        ...theme.typography.body2,
+        padding: theme.spacing(1),
+        textAlign: 'center',
+        color: theme.palette.text.secondary,
+      }));
     return (
         <div className="home-container">
             <section className="one">
@@ -50,53 +59,23 @@ const HomePage = () => {
                     </DialogActions>
                 </Dialog>
                 <Container fixed>
-                    {/* Sliding bar on 100vh */}
-                    {/* <Box sx={{ bgcolor: '#cfe8fc' }}> */}
-                    {/* Responsive break because of Title */}
-                    {/* <div class="docBar">
-                        <span class="docBar_content_1">
-                            <PictureAsPdfIcon color="disabled" sx={{ fontSize: 200 }} />
-                            <PictureAsPdfIcon color="disabled" sx={{ fontSize: 200 }} />
-                            <PictureAsPdfIcon color="disabled" sx={{ fontSize: 200 }} />
-                            <PictureAsPdfIcon color="disabled" sx={{ fontSize: 200 }} />
-                            <PictureAsPdfIcon color="disabled" sx={{ fontSize: 200 }} />
-                            <PictureAsPdfIcon color="disabled" sx={{ fontSize: 200 }} />
-                            <PictureAsPdfIcon color="disabled" sx={{ fontSize: 200 }} />
-                        </span>
-                        <span class="docBar_content_2">
-                            <ArticleIcon color="disabled" sx={{ fontSize: 200 }} />
-                            <ArticleIcon color="disabled" sx={{ fontSize: 200 }} />
-                            <ArticleIcon color="disabled" sx={{ fontSize: 200 }} />
-                            <ArticleIcon color="disabled" sx={{ fontSize: 200 }} />
-                            <ArticleIcon color="disabled" sx={{ fontSize: 200 }} />
-                            <ArticleIcon color="disabled" sx={{ fontSize: 200 }} />
-                            <ArticleIcon color="disabled" sx={{ fontSize: 200 }} />
-                        </span>
-                    </div> */}
                     <Box sx={{ textAlign: 'center', fontSize: '10vh' }} >
                         <Text italic weight={700}>
                             SPrintOut
                         </Text>
                     </Box>
-                    <Grid
-                        container
-                        sx={{ height: '40vh' }}
-                        spacing={0}
-                        direction="row"
-                        alignItems="center"
-                        justifyContent="center"
-                        justify="space-around" 
-                    >
-                        <Button onClick={() => window.location = 'upload' }>
-                            <Grid item sx={{ padding: '5vh', bgcolor: 'white', boxShadow: 3, borderRadius: '50%', '&:hover' :{ boxShadow: 10 }}} >
+                    {/* 10 spacing for mobile */}
+                    <Grid container justifyContent="center" spacing={20}>
+                        <Grid item>
+                            <Button className="gradient-border" onClick={() => window.location = 'upload' } sx={{ padding: '5vh', bgcolor: 'white', boxShadow: 3, '&:hover' :{ boxShadow: 10 }}} >
                                 <SendButton />
-                            </Grid>
-                        </Button>
-                        <Button onClick={handleOpen}>
-                            <Grid item sx={{ padding: '5vh', bgcolor: 'white', boxShadow: 3, borderRadius: '50%', '&:hover' :{ boxShadow: 10 }}} >
+                            </Button>
+                        </Grid>
+                        <Grid item>
+                            <Button className="gradient-border"onClick={handleOpen} sx={{ padding: '5vh', bgcolor: 'white', boxShadow: 3, '&:hover' :{ boxShadow: 10 }}} >
                                 <ReceiveButton />
-                            </Grid>
-                        </Button>
+                            </Button>
+                        </Grid>
                     </Grid>
                     {/* <div onClick={(e) => { e.preventDefault(); window.location.replace("/#how-it-works"); } }>
                         Next

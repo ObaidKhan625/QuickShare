@@ -113,7 +113,6 @@ const UploadPage = () => {
             <h1
               style={{
                 textAlign: "center",
-                color: "#585858",
                 letterSpacing: "2px"
               }}
             >
