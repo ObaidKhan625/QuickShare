@@ -4,7 +4,8 @@ import Grid from "@mui/material/Grid";
 import Font from "react-font";
 import Button from '@mui/material/Button';
 import DescriptionIcon from '@mui/icons-material/Description';
-import CloudUploadIcon from '@mui/icons-material/CloudUpload';
+import CloudUploadOutlinedIcon from '@mui/icons-material/CloudUploadOutlined';
+import CloudDoneOutlinedIcon from '@mui/icons-material/CloudDoneOutlined';
 import axios from 'axios';
 import { useDropzone } from "react-dropzone";
 import Box from '@mui/material/Box';
@@ -17,6 +18,7 @@ import { useMediaQuery } from 'react-responsive';
 
 const UploadPage = () => {
     const [allFiles, setAllFiles] = useState([]);
+    const [allFilesSizes, setAllFilesSizes] = useState([]);
     const [uploadedOnce, setUploadedOnce] = useState(false);
     const [fileCode, setFileCode] = useState("zeros");
     const rightGap1 = useMediaQuery({
@@ -64,34 +66,19 @@ const UploadPage = () => {
     const {getRootProps, getInputProps} = useDropzone({
         onDrop:(acceptedFiles) => {
             var tempFiles = allFiles;
+            var tempFilesSizes = allFilesSizes;
             for(let i = 0; i < acceptedFiles.length; i++) {
                 const myRenamedFile = new File([acceptedFiles[i]], fileCode+'-'+acceptedFiles[i].name);
+                var fileSize = acceptedFiles[i].size/1024;
                 // acceptedFiles[i].newName = fileCode+'-'+acceptedFiles[i].name;
                 tempFiles.push(myRenamedFile);
+                tempFilesSizes.push(fileSize.toPrecision(4)); 
             }
             setAllFiles(tempFiles);
-            // console.log(allFiles);
-            console.log(allFiles[0]);
+            setAllFilesSizes(tempFilesSizes);
             uploadFilesToAPI(allFiles);
         }
     });
-
-    // const icon = (
-    //   <Paper sx={{ m: 1 }} elevation={4}>
-    //     Hey There
-    //     {/* <Box component="svg" sx={{ width: 100, height: 100 }}> */}
-    //       {/* <Box
-    //         component="polygon"
-    //         sx={{
-    //           fill: (theme) => theme.palette.common.white,
-    //           stroke: (theme) => theme.palette.divider,
-    //           strokeWidth: 1,
-    //         }}
-    //         points="0,100 50,00, 100,100"
-    //       /> */}
-    //     {/* </Box> */}
-    //   </Paper>
-    // );
 
     return (
         <Container fixed>
@@ -105,91 +92,75 @@ const UploadPage = () => {
             <Grid item xs={12} md={12} lg={12}>
                 <div className="uploadBox" {...getRootProps()}>
                   <input {...getInputProps()} />
-                  <p className="text" style={{ width: uploadWidth, color: '#585858' }}>
-                      <CloudUploadIcon sx={{ fontSize: '25vh' }}/>
+                  <p className="text" style={{ width: uploadWidth, color: '#484848' }}>
                       {
                           !uploadedOnce? 
-                          <span>Drop files here!!!</span> :
-                          <span>Done! Upload some more ;)</span>
+                          <CloudUploadOutlinedIcon className="animateUploadPop" sx={{ fontSize: '25vh' }}/> :
+                          <CloudDoneOutlinedIcon className="animateUploadPop" sx={{ fontSize: '25vh' }}/>
                       }
+                      <Font family="Acme">
+                        <h2
+                          style={{
+                            textAlign: "center",
+                            letterSpacing: "1px"
+                          }}
+                        >
+                          {
+                              !uploadedOnce? 
+                              <span>Drop files here!!!</span> :
+                              <span>Done! Upload some more :)</span>
+                          }
+                        </h2>
+                      </Font>
                   </p>
                   {/* Hello There */}
                 </div>
             </Grid>
             <Grid item xs={12} md={12} lg={12}>
-          {/* <Button onClick={() => window.location = '' }>
-            Done
-          </Button> */}
-          <Font family="Lobster">
-            <h1
-              style={{
-                textAlign: "center",
-                letterSpacing: "2px"
-              }}
-            >
-              Uploaded Files
-            </h1>
-          </Font>
-          <Grid
-            container
-            spacing={4}
-            paddingTop={5}
-            paddingLeft={5}
-            paddingRight={5}
-          >
-            {allFiles.map((file, index) => (
-              <React.Fragment key={index}>
-                <Grid item xs={12} md={12} lg={12}>
-                  <Box sx={{ textAlign: 'center' }} className="uploadedFile">
-                    <Slide in={true} direction="down"
-                    style={{ transformOrigin: '0 0 0' }}
-                    {...(true ? { timeout: 2000 } : {})}>
-                      <Paper sx={{ p: 2, backgroundColor: 'transparent' }} elevation={5}>
-                        {file.name.substr(5)}
-                      </Paper>
-                    </Slide>
-                  </Box>
-                </Grid>
-              </React.Fragment>
-            ))}
-          </Grid>
-          </Grid>
+              {/* <Button onClick={() => window.location = '' }>
+                Done
+              </Button> */}
+              <Font family="Lobster">
+                <h1
+                  style={{
+                    textAlign: "center",
+                    letterSpacing: "2px"
+                  }}
+                >
+                  Uploaded Files
+                </h1>
+              </Font>
+              <Grid
+                container
+                spacing={4}
+                paddingTop={5}
+                paddingLeft={5}
+                paddingRight={5}
+              >
+                {allFiles.map((file, index) => (
+                  <React.Fragment key={index}>
+                    <Grid item xs={12} md={12} lg={12}>
+                      <Box sx={{ textAlign: 'center' }}>
+                        <Slide in={true} direction="down"
+                        style={{ transformOrigin: '0 0 0' }}
+                        {...(true ? { timeout: 2000 } : {})}>
+                          <Paper className="animate pop delay" sx={{ p: 2 }} elevation={5} >
+                            <Font family="Acme" style={{ letterSpacing: '1px' }}>
+                              {file.name.substr(5)} ({allFilesSizes[index]} KB)
+                            </Font>
+                          </Paper>
+                        </Slide>
+                      </Box>
+                    </Grid>
+                  </React.Fragment>
+                ))}
+              </Grid>
+              <br />
+              <br />
+            </Grid>
           </Grid>
         </Container>
     );
 }
 
 export default UploadPage;
-
-// import React, { useState } from "react";
-// import FileUpload from "../components/file-upload.component";
-
-// const UploadPage = () => {
-//   const [newUserInfo, setNewUserInfo] = useState({
-//     profileImages: []
-//   });
-  
-//   const updateUploadedFiles = (files) =>
-//     setNewUserInfo({ ...newUserInfo, profileImages: files });
-  
-//   const handleSubmit = (event) => {
-//     event.preventDefault();
-//     //logic to create new user...
-//   };
-  
-//   return (
-//     <div>
-//       <form onSubmit={handleSubmit}>
-//         <FileUpload
-//           accept=".jpg,.png,.jpeg"
-//           label="Profile Image(s)"
-//           multiple
-//           updateFilesCb={updateUploadedFiles}
-//         />
-//         <button type="submit">Create New User</button>
-//       </form>
-//     </div>
-//   );
-// }
-
-// export default UploadPage;

@@ -5,10 +5,10 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: black;
+  /* background-color: black; */
   /* background: radial-gradient(circle at -4% -12.9%, rgb(74, 98, 110) 0.3%, rgb(30, 33, 48) 90.2%); */
-  color: white;
-  /* background-image: linear-gradient( 103.3deg,  rgba(252,225,208,1) 30%, rgba(255,173,214,1) 55.7%, rgba(162,186,245,1) 81.8% ); */
+  color: 	#484848;
+  background-image: linear-gradient( 103.3deg,  rgba(252,225,208,1) 30%, rgba(255,173,214,1) 55.7%, rgba(162,186,245,1) 81.8% );
 }
 
 code {
@@ -116,7 +116,7 @@ section {
     0 0 10px 1px rgba(0, 0, 0, 0.25);
   backdrop-filter: blur(1em);
 }
-
+/* 
 .uploadedFile {
   color: '#585858';
   background: linear-gradient(
@@ -129,7 +129,8 @@ section {
     inset -4px -4px 5px 0 rgba(0, 0, 0, 0.125),
     0 0 10px 1px rgba(0, 0, 0, 0.25);
   backdrop-filter: blur(1em);
-}
+} */
+
 .gradient-border {
   --borderWidth: 3px;
   background: #1D1F20;
@@ -161,4 +162,56 @@ section {
 	100% {
 		background-position: 0% 50%;
 	}
+}
+
+.animateUploadPop {
+  animation-duration: 0.5s;
+  animation-name: animate-UploadPop;
+  animation-timing-function: cubic-bezier(.26, .53, .74, 1.48);
+}
+
+@keyframes animate-UploadPop {
+  0% {
+    opacity: 0;
+    transform: scale(0.0, 0.0);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1, 1);
+  }
+}
+
+.animate {
+  animation-duration: 0.5s;
+  animation-name: animate-fade;
+  animation-delay: 0.5s;
+  animation-fill-mode: backwards;
+}
+    
+@keyframes animate-fade {
+    0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+
+.animate.pop {
+  animation-name: animate-pop;
+  animation-timing-function: cubic-bezier(.26,.53,.74,1.48);
+}
+
+@keyframes animate-pop {
+  0% {
+    opacity: 0;
+    transform: scale(0.5, 0.5);
+  }
+        
+  100% {
+    opacity: 1;
+    transform: scale(1, 1);
+  }
+}
+
+.delay {
+  animation-delay: 0.8s;
 }

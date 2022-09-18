@@ -5,7 +5,6 @@ import HowItWorks from '../components/HowItWorks';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
-import { Text } from 'react-font';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
@@ -14,26 +13,25 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
 import { styled } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
-// import Pdf from '../assets/Saurabh_LinkedIn_SRE.pdf'
-
-// Pdf
-{/* <a href='http://www.africau.edu/images/default/sample.pdf' target='_blank' rel='noopener noreferrer'>
-    Hello
-</a> */}
-// //button[contains(text(), 'Download File')]
+import { useMediaQuery } from 'react-responsive';
+import Font from "react-font";
 
 const HomePage = () => {
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
     const Pdf = require('../assets/Pratik Mahankal Resume.pdf');
+    const screenWidth = useMediaQuery({
+        query: '(max-width: 460px)'
+    });
+    let buttonTop = screenWidth ? 10 : 20;
     const Item = styled(Paper)(({ theme }) => ({
         backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
         ...theme.typography.body2,
         padding: theme.spacing(1),
         textAlign: 'center',
         color: theme.palette.text.secondary,
-      }));
+    }));
     return (
         <div className="home-container">
             <section className="one">
@@ -61,19 +59,21 @@ const HomePage = () => {
                 </Dialog>
                 <Container fixed>
                     <Box sx={{ textAlign: 'center', fontSize: '10vh' }} >
-                        <Text italic weight={700}>
-                            SPrintOut
-                        </Text>
+                        <Font family="Acme">
+                            <h3 sx={{ textAlign: "center", letterSpacing: "2px" }}>
+                                SPrintout
+                            </h3>
+                        </Font>
                     </Box>
                     {/* 10 spacing for mobile */}
-                    <Grid container justifyContent="center" spacing={20}>
+                    <Grid container justifyContent="center" spacing={buttonTop}>
                         <Grid item>
-                            <Button className="gradient-border" onClick={() => window.location = 'upload' } sx={{ padding: '5vh', bgcolor: 'white', boxShadow: 3, '&:hover' :{ boxShadow: 10 }}} >
+                            <Button className="gradient-border" onClick={() => window.location = 'upload' } sx={{ padding: '5vh', bgcolor: 'white', boxShadow: 3, '&:hover' :{ boxShadow: 10, color: 'white' }, color: '#484848' }} >
                                 <SendButton />
                             </Button>
                         </Grid>
                         <Grid item>
-                            <Button className="gradient-border"onClick={handleOpen} sx={{ padding: '5vh', bgcolor: 'white', boxShadow: 3, '&:hover' :{ boxShadow: 10 }}} >
+                            <Button className="gradient-border"onClick={handleOpen} sx={{ padding: '5vh', bgcolor: 'white', boxShadow: 3, '&:hover' :{ boxShadow: 10, color: 'white' }, color: '#484848' }} >
                                 <ReceiveButton />
                             </Button>
                         </Grid>
