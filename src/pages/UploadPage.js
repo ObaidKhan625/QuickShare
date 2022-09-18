@@ -13,11 +13,22 @@ import Paper from '@mui/material/Paper';
 import Grow from '@mui/material/Grow';
 import Slide from '@mui/material/Slide';
 import FormControlLabel from '@mui/material/FormControlLabel';
+import { useMediaQuery } from 'react-responsive';
 
 const UploadPage = () => {
     const [allFiles, setAllFiles] = useState([]);
     const [uploadedOnce, setUploadedOnce] = useState(false);
     const [fileCode, setFileCode] = useState("zeros");
+    const rightGap1 = useMediaQuery({
+      query: '(max-width: 340px)'
+    });
+    const rightGap2 = useMediaQuery({
+      query: '(max-width: 265px)'
+    });
+    const rightGap3 = useMediaQuery({
+      query: '(max-width: 213px)'
+    });
+    var uploadWidth = rightGap1 ? rightGap2 ? rightGap3 ? '15vw' : '20vw' : '35vw' : '50vw';
 
     function makeID(length) {
       var result           = '';
@@ -92,20 +103,20 @@ const UploadPage = () => {
           justify="center"
           >
             <Grid item xs={12} md={12} lg={12}>
-              <div className="uploadBox" {...getRootProps()}>
-                {/* <input {...getInputProps()} />
-                <p className="text" style={{ width: '50vh', color: '#585858' }}>
-                    <CloudUploadIcon sx={{ fontSize: '25vh' }}/>
-                    {
-                        !uploadedOnce? 
-                        <span>Drop files here!!!</span> :
-                        <span>Done! Upload some more ;)</span>
-                    }
-                </p> */}
-                {/* Hello There */}
-              </div>
-            </Grid>      
-          </Grid>
+                <div className="uploadBox" {...getRootProps()}>
+                  <input {...getInputProps()} />
+                  <p className="text" style={{ width: uploadWidth, color: '#585858' }}>
+                      <CloudUploadIcon sx={{ fontSize: '25vh' }}/>
+                      {
+                          !uploadedOnce? 
+                          <span>Drop files here!!!</span> :
+                          <span>Done! Upload some more ;)</span>
+                      }
+                  </p>
+                  {/* Hello There */}
+                </div>
+            </Grid>
+            <Grid item xs={12} md={12} lg={12}>
           {/* <Button onClick={() => window.location = '' }>
             Done
           </Button> */}
@@ -142,8 +153,43 @@ const UploadPage = () => {
               </React.Fragment>
             ))}
           </Grid>
+          </Grid>
+          </Grid>
         </Container>
     );
 }
 
 export default UploadPage;
+
+// import React, { useState } from "react";
+// import FileUpload from "../components/file-upload.component";
+
+// const UploadPage = () => {
+//   const [newUserInfo, setNewUserInfo] = useState({
+//     profileImages: []
+//   });
+  
+//   const updateUploadedFiles = (files) =>
+//     setNewUserInfo({ ...newUserInfo, profileImages: files });
+  
+//   const handleSubmit = (event) => {
+//     event.preventDefault();
+//     //logic to create new user...
+//   };
+  
+//   return (
+//     <div>
+//       <form onSubmit={handleSubmit}>
+//         <FileUpload
+//           accept=".jpg,.png,.jpeg"
+//           label="Profile Image(s)"
+//           multiple
+//           updateFilesCb={updateUploadedFiles}
+//         />
+//         <button type="submit">Create New User</button>
+//       </form>
+//     </div>
+//   );
+// }
+
+// export default UploadPage;

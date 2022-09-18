@@ -1,6 +1,7 @@
 import React from 'react';
 import SendButton from '../components/SendButton';
 import ReceiveButton from '../components/ReceiveButton';
+import HowItWorks from '../components/HowItWorks';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
@@ -84,7 +85,7 @@ const HomePage = () => {
                 </Container>
             </section>
             <section id="how-it-works" className="two">
-                How It Works
+                <HowItWorks />
             </section>
         </div>
     )
