@@ -1,9 +1,9 @@
-To upload provide buttons:
-- Each button can be added
-- On add post on API using fetch
-- Provide list with codes
+Home Page:
+- Two sections on computer
 
 To receive:
 - Add code
+- Check code in backend
+- Return if exists, get redirected to page with code
 - Get redirected to page with pdf
-
+- Page has thumbnail

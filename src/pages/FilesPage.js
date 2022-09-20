@@ -1,12 +1,16 @@
 import React from 'react';
 import DescriptionOutlinedIcon from '@mui/icons-material/DescriptionOutlined';
 import Grid from "@mui/material/Grid";
-// import * as React from 'react';
 import { styled } from '@mui/material/styles';
-// import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
-
+import Font from "react-font";
+import Card from '@mui/material/Card';
+import CardActions from '@mui/material/CardActions';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
 
 const FilesPage = () => {
     var allFiles = [1, 2, 3, 4, 5];
@@ -26,22 +30,104 @@ const FilesPage = () => {
       }));
       
     return (
-    <div>
-        <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-        <Grid item xs={6}>
-          <Item>1</Item>
+      <div>
+        <Font family="Lobster">
+          <h1
+            style={{
+              textAlign: "center",
+              letterSpacing: "2px"
+            }}
+          >
+            Your Files
+          </h1>
+        </Font>
+        <Grid container rowSpacing={3} columnSpacing={3} sx={{ marginLeft: 1, marginRight:1 }}>
+          <Grid item xs={4} sx={{ textAlign: 'center' }} >
+            <Card>
+              <CardMedia
+                component="img"
+                image="https://mui.com/static/images/cards/contemplative-reptile.jpg"
+                alt="green iguana"
+              />
+              <CardContent>
+                <Typography gutterBottom variant="h5" component="div">
+                  File Name
+                </Typography>
+                {/* <Typography variant="body2" color="text.secondary">
+                  some size (KB)
+                </Typography> */}
+              </CardContent>
+              {/* <CardActions>
+                <Button size="small">Share</Button>
+                <Button size="small">Learn More</Button>
+              </CardActions> */}
+            </Card>
+          </Grid>
+          <Grid item xs={4} sx={{ textAlign: 'center' }} >
+            <Card>
+              <CardMedia
+                component="img"
+                image="https://mui.com/static/images/cards/contemplative-reptile.jpg"
+                alt="green iguana"
+              />
+              <CardContent>
+                <Typography gutterBottom variant="h5" component="div">
+                  File Name
+                </Typography>
+                {/* <Typography variant="body2" color="text.secondary">
+                  some size (KB)
+                </Typography> */}
+              </CardContent>
+              {/* <CardActions>
+                <Button size="small">Share</Button>
+                <Button size="small">Learn More</Button>
+              </CardActions> */}
+            </Card>
+          </Grid>
+          <Grid item xs={4} sx={{ textAlign: 'center' }} >
+            <Card>
+              <CardMedia
+                component="img"
+                image="https://mui.com/static/images/cards/contemplative-reptile.jpg"
+                alt="green iguana"
+              />
+              <CardContent>
+                <Typography gutterBottom variant="h5" component="div">
+                  File Name
+                </Typography>
+                {/* <Typography variant="body2" color="text.secondary">
+                  some size (KB)
+                </Typography> */}
+              </CardContent>
+              {/* <CardActions>
+                <Button size="small">Share</Button>
+                <Button size="small">Learn More</Button>
+              </CardActions> */}
+            </Card>
+          </Grid>
+          <Grid item xs={4} sx={{ textAlign: 'center' }} >
+            <Card>
+              <CardMedia
+                component="img"
+                image="https://mui.com/static/images/cards/contemplative-reptile.jpg"
+                alt="green iguana"
+              />
+              <CardContent>
+                <Typography gutterBottom variant="h5" component="div">
+                  File Name
+                </Typography>
+                {/* <Typography variant="body2" color="text.secondary">
+                  some size (KB)
+                </Typography> */}
+              </CardContent>
+              {/* <CardActions>
+                <Button size="small">Share</Button>
+                <Button size="small">Learn More</Button>
+              </CardActions> */}
+            </Card>
+          </Grid>
         </Grid>
-        <Grid item xs={6}>
-          <Item>2</Item>
-        </Grid>
-        <Grid item xs={6}>
-          <Item>3</Item>
-        </Grid>
-        <Grid item xs={6}>
-          <Item>4</Item>
-        </Grid>
-      </Grid>
-    </div>
+      </div>
     )
 }
 

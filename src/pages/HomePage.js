@@ -45,9 +45,6 @@ const HomePage = () => {
                         </Font>
                     </DialogTitle>
                     <DialogContent>
-                    {/* <DialogContentText>
-                        Enter the code you received on uploading your files.
-                    </DialogContentText> */}
                     <TextField
                         required
                         id="outlined-required"
@@ -57,18 +54,26 @@ const HomePage = () => {
                     </DialogContent>
                     <DialogActions>
                         <Button onClick={handleClose}>Proceed</Button>
-                        {/* <a href={Pdf} target='_blank' rel='noopener noreferrer'>
-                            Open
-                        </a> */}
                     </DialogActions>
                 </Dialog>
                 <Container fixed>
-                    <Box sx={{ textAlign: 'center', fontSize: '10vh' }} >
+                    <Box sx={{ textAlign: 'center' }} >
                         <Font family="Acme">
-                            <h3 sx={{ textAlign: "center", letterSpacing: "2px" }}>
-                                SPrintout
+                            <h3 className="waviy" style={{ fontSize: '10vh', marginBottom: 0 }}>
+                                <span style={{'--i':'1'}}>S</span>
+                                <span style={{'--i':'2'}}>p</span>
+                                <span style={{'--i':'3'}}>r</span>
+                                <span style={{'--i':'4'}}>i</span>
+                                <span style={{'--i':'5'}}>n</span>
+                                <span style={{'--i':'6'}}>t</span>
+                                <span style={{'--i':'7'}}>o</span>
+                                <span style={{'--i':'8'}}>u</span>
+                                <span style={{'--i':'9'}}>t</span>
+                                {/* SPrintout */}
                             </h3>
+                            <h3 style={{ marginTop: 0, marginBottom: '10vh', letterSpacing: 3 }}><i>Make Printouts Faster</i></h3>
                         </Font>
+                        
                     </Box>
                     {/* 10 spacing for mobile */}
                     <Grid container justifyContent="center" spacing={buttonTop}>
@@ -83,10 +88,6 @@ const HomePage = () => {
                             </Button>
                         </Grid>
                     </Grid>
-                    {/* <div onClick={(e) => { e.preventDefault(); window.location.replace("/#how-it-works"); } }>
-                        Next
-                    </div> */}
-                    {/* </Box> */}
                 </Container>
             </section>
             <section id="how-it-works" className="two">

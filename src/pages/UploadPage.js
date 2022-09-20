@@ -15,9 +15,6 @@ import Grow from '@mui/material/Grow';
 import Slide from '@mui/material/Slide';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import { useMediaQuery } from 'react-responsive';
-import PictureAsPdfOutlinedIcon from '@mui/icons-material/PictureAsPdfOutlined';
-import ArticleOutlinedIcon from '@mui/icons-material/ArticleOutlined';
-import DescriptionOutlinedIcon from '@mui/icons-material/DescriptionOutlined';
 
 const UploadPage = () => {
     const [allFiles, setAllFiles] = useState([]);
@@ -34,6 +31,7 @@ const UploadPage = () => {
       query: '(max-width: 213px)'
     });
     var uploadWidth = rightGap1 ? rightGap2 ? rightGap3 ? '15vw' : '20vw' : '35vw' : '50vw';
+    var cloudSize = rightGap2 ? '20vh' : '25vh';
 
     function makeID(length) {
       var result           = '';
@@ -98,8 +96,8 @@ const UploadPage = () => {
                   <p className="text" style={{ width: uploadWidth, color: '#484848' }}>
                       {
                           !uploadedOnce? 
-                          <CloudUploadOutlinedIcon className="animateUploadPop" sx={{ fontSize: '25vh' }}/> :
-                          <CloudDoneOutlinedIcon className="animateUploadPop" sx={{ fontSize: '25vh' }}/>
+                          <CloudUploadOutlinedIcon className="animateUploadPop" sx={{ fontSize: cloudSize }}/> :
+                          <CloudDoneOutlinedIcon className="animateUploadPop" sx={{ fontSize: cloudSize }}/>
                       }
                       <Font family="Acme">
                         <h2
@@ -148,21 +146,9 @@ const UploadPage = () => {
                         style={{ transformOrigin: '0 0 0' }}
                         {...(true ? { timeout: 2000 } : {})}>
                           <Paper className="animate pop delay" sx={{ p: 2 }} elevation={5} >
-                            <Grid container>
-                              <Grid item lg={5} md={5} xs={5} sx={{ textAlign: 'right' }}>
-                                {file.name.endsWith('.pdf') ?
-                                  <PictureAsPdfOutlinedIcon /> :
-                                  file.name.endsWith('.js') || file.name.endsWith('.cpp') ?
-                                  <ArticleOutlinedIcon /> :
-                                  <DescriptionOutlinedIcon />
-                                }
-                              </Grid>
-                              <Grid item sx={{ textAlign: 'left', paddingLeft: '5px' }}>
-                                <Font family="Acme" style={{ letterSpacing: '1px' }}>
-                                  {file.name.substr(5)} ({allFilesSizes[index]} KB)
-                                </Font>
-                              </Grid>
-                            </Grid>
+                            <Font family="Acme" style={{ letterSpacing: '1px', textAlign: 'center' }}>
+                              {file.name.substr(5)} ({allFilesSizes[index]} KB)
+                            </Font>
                           </Paper>
                         </Slide>
                       </Box>
