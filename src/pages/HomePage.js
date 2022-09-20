@@ -19,7 +19,10 @@ import Font from "react-font";
 const HomePage = () => {
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
-    const handleClose = () => setOpen(false);
+    const handleClose = () => {
+        setOpen(false);
+        window.location = 'show-files';
+    }
     const Pdf = require('../assets/Pratik Mahankal Resume.pdf');
     const screenWidth = useMediaQuery({
         query: '(max-width: 460px)'
@@ -37,7 +40,9 @@ const HomePage = () => {
             <section className="one">
                 <Dialog open={open} onClose={handleClose}>
                     <DialogTitle sx = {{ textAlign: 'center' }}>
-                        Enter the code you received on uploading your files.
+                        <Font family="Acme">
+                            Enter the code you received on uploading your files.
+                        </Font>
                     </DialogTitle>
                     <DialogContent>
                     {/* <DialogContentText>
@@ -52,9 +57,9 @@ const HomePage = () => {
                     </DialogContent>
                     <DialogActions>
                         <Button onClick={handleClose}>Proceed</Button>
-                        <a href={Pdf} target='_blank' rel='noopener noreferrer'>
+                        {/* <a href={Pdf} target='_blank' rel='noopener noreferrer'>
                             Open
-                        </a>
+                        </a> */}
                     </DialogActions>
                 </Dialog>
                 <Container fixed>

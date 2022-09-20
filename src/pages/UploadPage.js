@@ -15,6 +15,9 @@ import Grow from '@mui/material/Grow';
 import Slide from '@mui/material/Slide';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import { useMediaQuery } from 'react-responsive';
+import PictureAsPdfOutlinedIcon from '@mui/icons-material/PictureAsPdfOutlined';
+import ArticleOutlinedIcon from '@mui/icons-material/ArticleOutlined';
+import DescriptionOutlinedIcon from '@mui/icons-material/DescriptionOutlined';
 
 const UploadPage = () => {
     const [allFiles, setAllFiles] = useState([]);
@@ -145,9 +148,21 @@ const UploadPage = () => {
                         style={{ transformOrigin: '0 0 0' }}
                         {...(true ? { timeout: 2000 } : {})}>
                           <Paper className="animate pop delay" sx={{ p: 2 }} elevation={5} >
-                            <Font family="Acme" style={{ letterSpacing: '1px' }}>
-                              {file.name.substr(5)} ({allFilesSizes[index]} KB)
-                            </Font>
+                            <Grid container>
+                              <Grid item lg={5} md={5} xs={5} sx={{ textAlign: 'right' }}>
+                                {file.name.endsWith('.pdf') ?
+                                  <PictureAsPdfOutlinedIcon /> :
+                                  file.name.endsWith('.js') || file.name.endsWith('.cpp') ?
+                                  <ArticleOutlinedIcon /> :
+                                  <DescriptionOutlinedIcon />
+                                }
+                              </Grid>
+                              <Grid item sx={{ textAlign: 'left', paddingLeft: '5px' }}>
+                                <Font family="Acme" style={{ letterSpacing: '1px' }}>
+                                  {file.name.substr(5)} ({allFilesSizes[index]} KB)
+                                </Font>
+                              </Grid>
+                            </Grid>
                           </Paper>
                         </Slide>
                       </Box>
