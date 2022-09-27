@@ -91,32 +91,72 @@ const UploadPage = () => {
           justify="center"
           >
             <Grid item xs={12} md={12} lg={12}>
-                <div className="uploadBox" {...getRootProps()}>
-                  <input {...getInputProps()} />
-                  <p className="text" style={{ width: uploadWidth, color: '#484848' }}>
+              <div className="uploadBox" {...getRootProps()}>
+                <input {...getInputProps()} />
+                <p className="text" style={{ width: uploadWidth, color: '#484848' }}>
+                  {
+                      !uploadedOnce? 
+                      <CloudUploadOutlinedIcon className="animateUploadPop" sx={{ fontSize: cloudSize }}/> :
+                      <CloudDoneOutlinedIcon className="animateUploadPop" sx={{ fontSize: cloudSize }}/>
+                  }
+                  <Font family="Acme">
+                    <h2
+                      style={{
+                        textAlign: "center",
+                        letterSpacing: "1px"
+                      }}
+                    >
                       {
                           !uploadedOnce? 
-                          <CloudUploadOutlinedIcon className="animateUploadPop" sx={{ fontSize: cloudSize }}/> :
-                          <CloudDoneOutlinedIcon className="animateUploadPop" sx={{ fontSize: cloudSize }}/>
+                          <span>Drop files here!!!</span> :
+                          <span>Done! Upload some more :)</span>
                       }
-                      <Font family="Acme">
-                        <h2
-                          style={{
-                            textAlign: "center",
-                            letterSpacing: "1px"
-                          }}
-                        >
-                          {
-                              !uploadedOnce? 
-                              <span>Drop files here!!!</span> :
-                              <span>Done! Upload some more :)</span>
-                          }
-                        </h2>
-                      </Font>
-                  </p>
-                  {/* Hello There */}
-                </div>
+                    </h2>
+                  </Font>
+                </p>
+                {/* Hello There */}
+              </div>
             </Grid>
+            {
+              uploadedOnce ?
+              <Grid item xs={12} md={12} lg={12}>
+                <Grid
+                container
+                spacing={0}
+                direction="column"
+                alignItems="center"
+                justify="center"
+                className="codeBox gradient-border"
+                >
+                  <Grid item xs={12} md={12} lg={12}>
+                    <Font family="Acme">
+                      <h2
+                        style={{
+                          textAlign: "center",
+                          letterSpacing: "1px"
+                        }}
+                      >
+                        Here's your code : 
+                      </h2>
+                    </Font>
+                  </Grid>
+                  <Grid item xs={12} md={12} lg={12}>
+                    <Font family="Acme">
+                      <h2
+                        style={{
+                          textAlign: "center",
+                          letterSpacing: "5px"
+                        }}
+                      >
+                        {fileCode}
+                      </h2>
+                    </Font>
+                  </Grid>
+                </Grid>
+              </Grid>
+              :
+              <span></span>
+            }
             <Grid item xs={12} md={12} lg={12}>
               {/* <Button onClick={() => window.location = '' }>
                 Done
