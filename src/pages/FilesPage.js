@@ -1,4 +1,4 @@
-import { React, useState } from 'react';
+import { React } from 'react';
 import Grid from "@mui/material/Grid";
 import Font from "react-font";
 import Card from '@mui/material/Card';
@@ -6,6 +6,7 @@ import CardContent from '@mui/material/CardContent';
 import Container from '@mui/material/Container';
 import Cookies from "universal-cookie";
 import ImageNotFound from '../assets/ImageNotFound.png';
+import './FilesPage.css';
 
 const FilesPage = () => {
   const cookies = new Cookies();
@@ -47,7 +48,7 @@ const FilesPage = () => {
               <a href={viewLinks[index]} target="_blank" style={{ 'textDecoration': 'none' }} >
                 <Card>
                   <img onError={({ currentTarget }) => {
-                    currentTarget.onerror = null; // prevents looping
+                    currentTarget.onerror = null;
                     currentTarget.src=ImageNotFound;
                   }} src={thumbnailLinks[index]}/>
                   <CardContent  className="fileCard">
@@ -57,9 +58,6 @@ const FilesPage = () => {
               </a>
             </Grid>
           ))}
-          {/* <Grid item xl={3} lg={4} md={4} sm={6} xs={12} sx={{ textAlign: 'center' }} >
-            <File />
-          </Grid> */}
         </Grid>
       </Container>
     </div>

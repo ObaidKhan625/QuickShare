@@ -1,10 +1,10 @@
 import { React, useState } from 'react';
-import SendButton from '../components/SendButton';
-import ReceiveButton from '../components/ReceiveButton';
-import HowItWorksOne from '../components/HowItWorksOne';
-import HowItWorksTwo from '../components/HowItWorksTwo';
-import HowItWorksThree from '../components/HowItWorksThree';
-import HowItWorksFour from '../components/HowItWorksFour';
+import SendButton from '../components/Send_Receive_Buttons/SendButton';
+import ReceiveButton from '../components/Send_Receive_Buttons/ReceiveButton';
+import HowItWorksOne from '../components/how_it_works/HowItWorksOne';
+import HowItWorksTwo from '../components/how_it_works/HowItWorksTwo';
+import HowItWorksThree from '../components/how_it_works/HowItWorksThree';
+import HowItWorksFour from '../components/how_it_works/HowItWorksFour';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
@@ -14,12 +14,11 @@ import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
-import { styled } from '@mui/material/styles';
-import Paper from '@mui/material/Paper';
 import { useMediaQuery } from 'react-responsive';
 import Font from "react-font";
 import Cookies from "universal-cookie";
 import LoadingScreen from "react-loading-screen";
+import './HomePage.css'
 
 const HomePage = () => {
     const [open, setOpen] = useState(false);
@@ -57,13 +56,6 @@ const HomePage = () => {
         query: '(max-width: 460px)'
     });
     let buttonTop = screenWidth ? 10 : 20;
-    const Item = styled(Paper)(({ theme }) => ({
-        backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
-        ...theme.typography.body2,
-        padding: theme.spacing(1),
-        textAlign: 'center',
-        color: theme.palette.text.secondary,
-    }));
     return (
         <div className="home-container">
             <LoadingScreen
@@ -99,7 +91,6 @@ const HomePage = () => {
                             <Font family="Acme">
                                 <h3 style={{ fontSize: '10vh', marginBottom: 0 }}>
                                     <span>QuickShare</span>
-                                    {/* QuickShare */}
                                 </h3>
                                 <h3 style={{ marginTop: 0, marginBottom: '10vh', letterSpacing: 3 }}><i>Making PDF/Docs Sharing Faster</i></h3>
                             </Font>

@@ -1,0 +1,32 @@
+.tilt-left {
+    transform: perspective(500px);
+    transform-style: preserve-3d;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.tilt-image-left {
+    width: 90vh;
+    position: absolute;
+    display: inline-block;
+    transform: rotateX(0deg) rotatey(20deg);
+}
+
+.tilt-right {
+    transform: perspective(500px);
+    transform-style: preserve-3d;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.tilt-image-right {
+    width: 90vh;
+    position: absolute;
+    display: inline-block;
+    transform: rotateX(0deg) rotatey(-20deg);
+}

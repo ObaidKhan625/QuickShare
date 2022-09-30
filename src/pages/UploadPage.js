@@ -11,6 +11,7 @@ import Paper from '@mui/material/Paper';
 import Slide from '@mui/material/Slide';
 import { useMediaQuery } from 'react-responsive';
 import SyncLoader from "react-spinners/SyncLoader";
+import './UploadPage.css';
 
 const UploadPage = () => {
     const [allFiles, setAllFiles] = useState([]);
@@ -54,7 +55,7 @@ const UploadPage = () => {
       for(let i = 0; i < files.length; i++) {
         data.append('file', files[i]);
       }
-      let response = await axios.post('//localhost:3001/upload', data)
+      await axios.post('//localhost:3001/upload', data)
         .then((response) => {
           setUploading(false);
           setUploadedOnce(true);
