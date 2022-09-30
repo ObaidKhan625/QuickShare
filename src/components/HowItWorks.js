@@ -1,166 +1,47 @@
-// import React, { Component } from 'react';
-// import ReactDOM from 'react-dom';
-// import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
-// import { Carousel } from 'react-responsive-carousel';
-// import React from 'react';
-// import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
-// import { Carousel } from 'react-responsive-carousel';
-// import p from "../assets/file-pdf-solid-240.png";
-
-// const HowItWorks = () => {
-//     return (
-//             <Carousel>
-//                 <div>
-//                     <img src={p} height="400px" />
-//                     <p className="legend">Legend 1</p>
-//                 </div>
-//                 <div>
-//                     <img src={p} height="400px" />
-//                     <p className="legend">Legend 2</p>
-//                 </div>
-//                 <div>
-//                     <img src={p} height="400px" />
-//                     <p className="legend">Legend 3</p>
-//                 </div>
-//                 <div>
-//                     <img src={p} height="400px" />
-//                     <p className="legend">Legend 4</p>
-//                 </div>
-//                 <div>
-//                     <img src={p} height="400px" />
-//                     <p className="legend">Legend 5</p>
-//                 </div>
-//                 <div>
-//                     <img src={p} height="400px" />
-//                     <p className="legend">Legend 6</p>
-//                 </div>
-//             </Carousel>
-//         )
-// }
 import React from 'react';
-import { useTheme } from '@mui/material/styles';
-import Box from '@mui/material/Box';
-import MobileStepper from '@mui/material/MobileStepper';
-import Paper from '@mui/material/Paper';
-import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
-import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
-import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
-import SwipeableViews from 'react-swipeable-views';
-import { autoPlay } from 'react-swipeable-views-utils';
 import Container from '@mui/material/Container';
+import Grid from '@mui/material/Grid';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import { CardActionArea } from '@mui/material';
+import Font from "react-font";
+import Slide from '@mui/material/Slide';
 
 const HowItWorks = () => {
-    const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
-    const images = [
-    {
-        label: 'San Francisco – Oakland Bay Bridge, United States',
-        imgPath:
-        'https://images.unsplash.com/photo-1537944434965-cf4679d1a598?auto=format&fit=crop&w=400&h=250&q=60',
-    },
-    {
-        label: 'Bird',
-        imgPath:
-        'https://images.unsplash.com/photo-1538032746644-0212e812a9e7?auto=format&fit=crop&w=400&h=250&q=60',
-    },
-    {
-        label: 'Bali, Indonesia',
-        imgPath:
-        'https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=400&h=250',
-    },
-    {
-        label: 'Goč, Serbia',
-        imgPath:
-        'https://images.unsplash.com/photo-1512341689857-198e7e2f3ca8?auto=format&fit=crop&w=400&h=250&q=60',
-    },
-    ];
-
-    const theme = useTheme();
-    const [activeStep, setActiveStep] = React.useState(0);
-    const maxSteps = images.length;
-
-    const handleNext = () => {
-        setActiveStep((prevActiveStep) => prevActiveStep + 1);
-    };
-
-    const handleBack = () => {
-        setActiveStep((prevActiveStep) => prevActiveStep - 1);
-    };
-
-    const handleStepChange = (step) => {
-        setActiveStep(step);
-    };
+    const [checked, setChecked] = React.useState(false);
+    const containerRef = React.useRef(null);
+    const nums = [1, 2, 3, 4, 5, 6, 7, 8];
+    const instructions = [
+    "Click the send button on the device through which you like to send the files✈️", "", "", 
+    "Upload the files on the Drag & Drop Upload Box, note the code allotted📨", 
+    "On the recieving device click the recieve button and write the code assigned to you#️⃣", "", "", 
+    "View your files🎁"];
     return (
-        <Container fixed sx={{ height: '100vh' }}>
-            <Box sx={{ flexGrow: 1, backgroundColor: 'red' }}>
-                <Paper
-                    square
-                    elevation={0}
-                    sx={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    height: 50,
-                    pl: 2,
-                    bgcolor: 'background.default',
-                    }}
-                >
-                    <Typography>{images[activeStep].label}</Typography>
-                </Paper>
-                <AutoPlaySwipeableViews
-                    axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
-                    index={activeStep}
-                    onChangeIndex={handleStepChange}
-                    enableMouseEvents
-                >
-                    {images.map((step, index) => (
-                    <div key={step.label}>
-                        {Math.abs(activeStep - index) <= 2 ? (
-                        <Box
-                            component="img"
-                            sx={{
-                            height: 255,
-                            display: 'block',
-                            maxWidth: 400,
-                            overflow: 'hidden',
-                            width: '100%',
-                            }}
-                            src={step.imgPath}
-                            alt={step.label}
-                        />
-                        ) : null}
-                    </div>
-                    ))}
-                </AutoPlaySwipeableViews>
-                <MobileStepper
-                    steps={maxSteps}
-                    position="static"
-                    activeStep={activeStep}
-                    nextButton={
-                    <Button
-                        size="small"
-                        onClick={handleNext}
-                        disabled={activeStep === maxSteps - 1}
-                    >
-                        Next
-                        {theme.direction === 'rtl' ? (
-                        <KeyboardArrowLeft />
-                        ) : (
-                        <KeyboardArrowRight />
-                        )}
-                    </Button>
-                    }
-                    backButton={
-                    <Button size="small" onClick={handleBack} disabled={activeStep === 0}>
-                        {theme.direction === 'rtl' ? (
-                        <KeyboardArrowRight />
-                        ) : (
-                        <KeyboardArrowLeft />
-                        )}
-                        Back
-                    </Button>
-                    }
-                />
-            </Box>
+        <Container fixed sx={{ height: '100vh', paddingTop: '2vh' }}>
+            <Grid container>
+                {nums.map((num, index) => (
+                    // <Slide direction="up" in={checked}>
+                        <Grid item sm={6} sx={{ textAlign: 'center', 
+                        borderLeft: ((num == 2 || num == 4 || num == 6 || num == 8) ? 2 : 0), 
+                        borderRight: ((num == 1 || num == 3 || num == 5 || num == 7) ? 2 : 0) }}>
+                        {
+                            num === 1 || num === 4 || num === 5 || num === 8 ?
+                            <Card sx={{ padding: 5 }}>
+                                <CardActionArea>
+                                    <CardContent>
+                                        <Font family="Acme">
+                                            <i><h3 style={{ letterSpacing: 2 }}>{instructions[index]}</h3></i>
+                                        </Font>
+                                    </CardContent>
+                                </CardActionArea>
+                            </Card>
+                            :
+                            <span style={{ display: 'none' }}>Hey</span>
+                        }
+                        </Grid>
+                    // </Slide>
+                ))}
+            </Grid>
         </Container>
     )
 }

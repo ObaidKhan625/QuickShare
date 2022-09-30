@@ -5,15 +5,14 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  /* background-color: black; */
+  background-color: #E3E2DF;
   /* background: radial-gradient(circle at -4% -12.9%, rgb(74, 98, 110) 0.3%, rgb(30, 33, 48) 90.2%); */
-  color: 	#484848;
-  background-image: linear-gradient( 103.3deg,  rgba(252,225,208,1) 30%, rgba(255,173,214,1) 55.7%, rgba(162,186,245,1) 81.8% );
+  color: 	#EE4C7C;
+  /* background-image: linear-gradient( 103.3deg,  rgba(252,225,208,1) 30%, rgba(255,173,214,1) 55.7%, rgba(162,186,245,1) 81.8% ); */
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
 
 .docBar {
@@ -72,6 +71,18 @@ section {
 
 .two {
   background-color: #FFEBCD;
+}
+
+.three {
+  background-color: #7FDBFF;
+}
+
+.four {
+  background-color: #F7CAC9;
+}
+
+.five {
+  background-color: #f7ffc4;
 }
 
 .dropArea {
@@ -256,4 +267,50 @@ section {
   margin-top: 10px;
 }
 
+.fileCard {
+  color: 	#EE4C7C;
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, .75),
+    rgba(255, 255, 255, .32)
+  );
+  box-shadow:
+    inset 4px 4px 5px 0 rgba(255, 255, 255, .25),
+    inset -4px -4px 5px 0 rgba(0, 0, 0, 0.125),
+    0 0 10px 1px rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(1em);
+}
 
+.tilt-left {
+  transform: perspective(500px);
+  transform-style: preserve-3d;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.tilt-image-left {
+  width: 90vh;
+  position: absolute;
+  display: inline-block;
+  transform: rotateX(0deg) rotatey(20deg);
+}
+
+.tilt-right {
+  transform: perspective(500px);
+  transform-style: preserve-3d;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.tilt-image-right {
+  width: 90vh;
+  position: absolute;
+  display: inline-block;
+  transform: rotateX(0deg) rotatey(-20deg);
+}

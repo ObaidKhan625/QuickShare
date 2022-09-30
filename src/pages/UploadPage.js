@@ -2,23 +2,20 @@ import React, { useState, useEffect } from 'react';
 import Container from '@mui/material/Container';
 import Grid from "@mui/material/Grid";
 import Font from "react-font";
-import Button from '@mui/material/Button';
-import DescriptionIcon from '@mui/icons-material/Description';
 import CloudUploadOutlinedIcon from '@mui/icons-material/CloudUploadOutlined';
 import CloudDoneOutlinedIcon from '@mui/icons-material/CloudDoneOutlined';
 import axios from 'axios';
 import { useDropzone } from "react-dropzone";
 import Box from '@mui/material/Box';
-import Switch from '@mui/material/Switch';
 import Paper from '@mui/material/Paper';
-import Grow from '@mui/material/Grow';
 import Slide from '@mui/material/Slide';
-import FormControlLabel from '@mui/material/FormControlLabel';
 import { useMediaQuery } from 'react-responsive';
+import SyncLoader from "react-spinners/SyncLoader";
 
 const UploadPage = () => {
     const [allFiles, setAllFiles] = useState([]);
     const [allFilesSizes, setAllFilesSizes] = useState([]);
+    const [uploading, setUploading] = useState(false);
     const [uploadedOnce, setUploadedOnce] = useState(false);
     const [fileCode, setFileCode] = useState("zeros");
     const rightGap1 = useMediaQuery({
@@ -50,22 +47,29 @@ const UploadPage = () => {
     }, []);
 
     const uploadFilesToAPI = async(files) => {
+      if(uploading)
+        return;
+      setUploading(true);
       const data = new FormData();
       for(let i = 0; i < files.length; i++) {
         data.append('file', files[i]);
       }
-      axios.post('//localhost:3001/upload', data)
+      let response = await axios.post('//localhost:3001/upload', data)
         .then((response) => {
+          setUploading(false);
+          setUploadedOnce(true);
           console.log('Upload Success');
         })
         .catch((e) => {
+          setUploading(false);
+          setUploadedOnce(true);
           console.log('Upload Error');
         })
-      setUploadedOnce(true);
     }
 
     const {getRootProps, getInputProps} = useDropzone({
         onDrop:(acceptedFiles) => {
+          if(!uploading) {
             var tempFiles = allFiles;
             var tempFilesSizes = allFilesSizes;
             for(let i = 0; i < acceptedFiles.length; i++) {
@@ -78,6 +82,7 @@ const UploadPage = () => {
             setAllFiles(tempFiles);
             setAllFilesSizes(tempFilesSizes);
             uploadFilesToAPI(allFiles);
+          }
         }
     });
 
@@ -93,11 +98,13 @@ const UploadPage = () => {
             <Grid item xs={12} md={12} lg={12}>
               <div className="uploadBox" {...getRootProps()}>
                 <input {...getInputProps()} />
-                <p className="text" style={{ width: uploadWidth, color: '#484848' }}>
+                <p className="text" style={{ width: uploadWidth, color: '#EE4C7C' }}>
                   {
-                      !uploadedOnce? 
-                      <CloudUploadOutlinedIcon className="animateUploadPop" sx={{ fontSize: cloudSize }}/> :
-                      <CloudDoneOutlinedIcon className="animateUploadPop" sx={{ fontSize: cloudSize }}/>
+                    uploading?
+                    <SyncLoader color='#EE4C7C' loading={uploading} style={{ fontSize: cloudSize }} />:
+                    !uploadedOnce?
+                    <CloudUploadOutlinedIcon className="animateUploadPop" sx={{ fontSize: cloudSize }}/>:
+                    <CloudDoneOutlinedIcon className="animateUploadPop" sx={{ fontSize: cloudSize }}/>
                   }
                   <Font family="Acme">
                     <h2
@@ -107,9 +114,11 @@ const UploadPage = () => {
                       }}
                     >
                       {
-                          !uploadedOnce? 
-                          <span>Drop files here!!!</span> :
-                          <span>Done! Upload some more :)</span>
+                        uploading?
+                        <span></span>:
+                        !uploadedOnce?
+                        <span>Drop files here!!!</span>:
+                        <span>Done! Upload some more :)</span>
                       }
                     </h2>
                   </Font>
@@ -185,7 +194,7 @@ const UploadPage = () => {
                         <Slide in={true} direction="down"
                         style={{ transformOrigin: '0 0 0' }}
                         {...(true ? { timeout: 2000 } : {})}>
-                          <Paper className="animate pop delay" sx={{ p: 2 }} elevation={5} >
+                          <Paper className="animate pop delay" sx={{ p: 2, color: '#EE4C7C' }} elevation={5} >
                             <Font family="Acme" style={{ letterSpacing: '1px', textAlign: 'center' }}>
                               {file.name.substr(5)} ({allFilesSizes[index]} KB)
                             </Font>
