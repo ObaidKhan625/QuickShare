@@ -26,7 +26,7 @@ const HowItWorksTwo = () => {
                         <Box sx={{ textAlign: 'center' }}>
                             <Font family="Acme">
                                 <h3 style={{ fontSize: '5vh', marginBottom: 0 }}>
-                                    <span>Upload the files on the Drag & Drop Upload Box, note the code allotted</span>
+                                    <span>2. Upload the files on the Drag & Drop Upload Box, note the code allotted</span>
                                 </h3>
                             </Font>
                         </Box>

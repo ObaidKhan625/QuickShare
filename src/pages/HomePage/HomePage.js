@@ -105,14 +105,21 @@ const HomePage = () => {
                                 </Button>
                             </Grid>
                             <Grid item>
-                                <Button className="gradient-border"onClick={handleOpen} sx={{ padding: '5vh', bgcolor: 'white', boxShadow: 3, '&:hover' :{ boxShadow: 10, color: 'white' }, color: '#EE4C7C' }} >
+                                <Button className="gradient-border" onClick={handleOpen} sx={{ padding: '5vh', bgcolor: 'white', boxShadow: 3, '&:hover' :{ boxShadow: 10, color: 'white' }, color: '#EE4C7C' }} >
                                     <ReceiveButton />
                                 </Button>
                             </Grid>
                         </Grid>
+                        <Box sx={{ textAlign: 'center', marginTop:'30vh', color: '#EE4C7C' }} >
+                            <Button sx={{ color: '#EE4C7C' }} onClick={ () => document.getElementById('section-two').scrollIntoView() }>
+                                <Font family="Acme">
+                                    <h1 style={{ letterSpacing: 3 }}>How it works?</h1>
+                                </Font>
+                            </Button>
+                        </Box>
                     </Container>
                 </section>
-                <section className="two">
+                <section id="section-two" className="two">
                     <HowItWorksOne />
                 </section>
                 <section className="three">

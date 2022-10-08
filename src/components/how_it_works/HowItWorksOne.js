@@ -40,7 +40,7 @@ const HowItWorksOne = () => {
                     <Box sx={{ textAlign: 'center' }}>
                         <Font family="Acme">
                             <h3 style={{ fontSize: '5vh', marginBottom: 0 }}>
-                                <span>Click the send button on the device through which you like to send the files</span>
+                                <span>1. Click the send button on the device through which you like to send the files</span>
                             </h3>
                         </Font>
                     </Box>

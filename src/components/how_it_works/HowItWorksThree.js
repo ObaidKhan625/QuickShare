@@ -40,7 +40,7 @@ const HowItWorksThree = () => {
                     <Box sx={{ textAlign: 'center' }}>
                         <Font family="Acme">
                             <h3 style={{ fontSize: '5vh', marginBottom: 0 }}>
-                                <span>On the recieving device click the recieve button and write the code assigned to you</span>
+                                <span>3. On the recieving device click the recieve button and write the code assigned to you</span>
                             </h3>
                         </Font>
                     </Box>

@@ -26,7 +26,7 @@ const HowItWorksFour = () => {
                         <Box sx={{ textAlign: 'center' }}>
                             <Font family="Acme">
                                 <h3 style={{ fontSize: '5vh', marginBottom: 0 }}>
-                                    <span>View your files</span>
+                                    <span>4. View your files</span>
                                 </h3>
                             </Font>
                         </Box>
