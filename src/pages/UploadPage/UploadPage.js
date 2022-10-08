@@ -14,6 +14,7 @@ import SyncLoader from "react-spinners/SyncLoader";
 import './UploadPage.css';
 
 const UploadPage = () => {
+    const apiBaseURL = process.env.REACT_APP_API_URL;
     const [allFiles, setAllFiles] = useState([]);
     const [allFilesSizes, setAllFilesSizes] = useState([]);
     const [uploading, setUploading] = useState(false);
@@ -55,17 +56,21 @@ const UploadPage = () => {
       for(let i = 0; i < files.length; i++) {
         data.append('file', files[i]);
       }
-      await axios.post('//localhost:3001/upload', data)
+      let response = await axios.post(`${apiBaseURL}/upload`, 
+      data)
         .then((response) => {
+          console.log(response);
           setUploading(false);
           setUploadedOnce(true);
           console.log('Upload Success');
         })
         .catch((e) => {
+          console.log(e);
           setUploading(false);
           setUploadedOnce(true);
           console.log('Upload Error');
-        })
+        });
+      console.log(response);
     }
 
     const {getRootProps, getInputProps} = useDropzone({

@@ -1,10 +1,10 @@
 import { React, useState } from 'react';
-import SendButton from '../components/Send_Receive_Buttons/SendButton';
-import ReceiveButton from '../components/Send_Receive_Buttons/ReceiveButton';
-import HowItWorksOne from '../components/how_it_works/HowItWorksOne';
-import HowItWorksTwo from '../components/how_it_works/HowItWorksTwo';
-import HowItWorksThree from '../components/how_it_works/HowItWorksThree';
-import HowItWorksFour from '../components/how_it_works/HowItWorksFour';
+import SendButton from '../../components/Send_Receive_Buttons/SendButton';
+import ReceiveButton from '../../components/Send_Receive_Buttons/ReceiveButton';
+import HowItWorksOne from '../../components/how_it_works/HowItWorksOne';
+import HowItWorksTwo from '../../components/how_it_works/HowItWorksTwo';
+import HowItWorksThree from '../../components/how_it_works/HowItWorksThree';
+import HowItWorksFour from '../../components/how_it_works/HowItWorksFour';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
@@ -18,17 +18,19 @@ import { useMediaQuery } from 'react-responsive';
 import Font from "react-font";
 import Cookies from "universal-cookie";
 import LoadingScreen from "react-loading-screen";
-import './HomePage.css'
+import './HomePage.css';
 
 const HomePage = () => {
+    const apiBaseURL = process.env.REACT_APP_API_URL;
     const [open, setOpen] = useState(false);
     const [code, setCode] = useState("");
     const [loading, setLoading] = useState(false);
-    const handleOpen = () => setOpen(true);
+    const handleOpen = async() => setOpen(true);
     const handleClose = () => setOpen(false);
+
     const postCode = async() => {
         setLoading(true);
-        let response = await fetch(`http://localhost:3001/post-code/`, {
+        let response = await fetch(`${apiBaseURL}/post-code/`, {
             method: "POST",
             headers: {
             "Content-Type": "application/json"
@@ -48,8 +50,8 @@ const HomePage = () => {
             setLoading(false);
         }
         else {
-            alert("Wrong Code");
             setLoading(false);
+            alert("Wrong Code!!!");
         }
     }
     const screenWidth = useMediaQuery({
@@ -94,7 +96,6 @@ const HomePage = () => {
                                 </h3>
                                 <h3 style={{ marginTop: 0, marginBottom: '10vh', letterSpacing: 3 }}><i>Making PDF/Docs Sharing Faster</i></h3>
                             </Font>
-                            
                         </Box>
                         {/* 10 spacing for mobile */}
                         <Grid container justifyContent="center" spacing={buttonTop}>

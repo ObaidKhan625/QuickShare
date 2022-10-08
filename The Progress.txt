@@ -1,9 +1,0 @@
-Home Page:
-- Two sections on computer
-
-To receive:
-- Add code
-- Check code in backend
-- Return if exists, get redirected to page with code
-- Get redirected to page with pdf
-- Page has thumbnail

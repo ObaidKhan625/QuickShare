@@ -5,7 +5,7 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Container from '@mui/material/Container';
 import Cookies from "universal-cookie";
-import ImageNotFound from '../assets/ImageNotFound.png';
+import ImageNotFound from '../../assets/ImageNotFound.png';
 import './FilesPage.css';
 
 const FilesPage = () => {
