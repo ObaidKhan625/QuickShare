@@ -60,7 +60,30 @@ section {
         background-position: 0% 50%;
     }
 }
-/* 
-.howItWorksButton {
+
+.gitCircleBig {
     position: absolute;
-} */
+    transform: translate(-55%, -80%);
+    width: 40vh;
+    height: 40vh;
+    border-radius: 50%;
+    background-color: #EE4C7C;
+}
+
+.gitCircleMedium {
+    position: absolute;
+    transform: translate(-55%, -90%);
+    width: 30vh;
+    height: 30vh;
+    border-radius: 50%;
+    background-color: #EE4C7C;
+}
+
+.gitIcon {
+    color: #E3E2DF;
+    -ms-transform: rotate(-45deg)r;
+    transform: rotate(-45deg);
+}
+
+
+

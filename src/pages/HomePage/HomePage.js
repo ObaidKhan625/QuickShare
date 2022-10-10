@@ -18,6 +18,7 @@ import { useMediaQuery } from 'react-responsive';
 import Font from "react-font";
 import Cookies from "universal-cookie";
 import LoadingScreen from "react-loading-screen";
+import GitHubIcon from '@mui/icons-material/GitHub';
 import './HomePage.css';
 
 const HomePage = () => {
@@ -57,6 +58,9 @@ const HomePage = () => {
     const screenWidth = useMediaQuery({
         query: '(max-width: 460px)'
     });
+    const screenWidthGitLogo = useMediaQuery({
+        query: '(min-width: 510px)'
+    });
     let buttonTop = screenWidth ? 10 : 20;
     return (
         <div className="home-container">
@@ -67,7 +71,18 @@ const HomePage = () => {
                 textColor="#EE4C7C"
                 text="Please Wait"
             >
+                
                 <section className="one">
+                    <div className={screenWidthGitLogo ? "gitCircleBig" : "gitCircleMedium"}>
+                    </div>
+                    <div style={{ position: 'fixed', top:'1vh', left: '1vh' }}>
+                        <Button>
+                            <GitHubIcon onClick={() => window.open('https://github.com/ObaidKhan625/QuickShare', '_blank')} 
+                            className="gitIcon"
+                            sx={{ 'height': screenWidthGitLogo ? '10vh': '7vh', 
+                            'width': screenWidthGitLogo ? '10vh': '7vh' }} />
+                        </Button>
+                    </div>
                     <Dialog open={open} onClose={handleClose}>
                         <DialogTitle sx = {{ textAlign: 'center', color: '#EE4C7C' }}>
                             <Font family="Acme">
@@ -110,13 +125,13 @@ const HomePage = () => {
                                 </Button>
                             </Grid>
                         </Grid>
-                        <Box sx={{ textAlign: 'center', marginTop:'30vh', color: '#EE4C7C' }} >
+                        {/* <Box sx={{ textAlign: 'center', color: '#EE4C7C' }} >
                             <Button sx={{ color: '#EE4C7C' }} onClick={ () => document.getElementById('section-two').scrollIntoView() }>
                                 <Font family="Acme">
                                     <h1 style={{ letterSpacing: 3 }}>How it works?</h1>
                                 </Font>
                             </Button>
-                        </Box>
+                        </Box> */}
                     </Container>
                 </section>
                 <section id="section-two" className="two">

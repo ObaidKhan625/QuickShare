@@ -10,6 +10,8 @@ import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Slide from '@mui/material/Slide';
 import { useMediaQuery } from 'react-responsive';
+import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
+import 'react-circular-progressbar/dist/styles.css';
 import SyncLoader from "react-spinners/SyncLoader";
 import './UploadPage.css';
 
@@ -20,6 +22,8 @@ const UploadPage = () => {
     const [uploading, setUploading] = useState(false);
     const [uploadedOnce, setUploadedOnce] = useState(false);
     const [fileCode, setFileCode] = useState("zeros");
+    const [uploaded, setUploaded] = useState(0);
+    const [awaitingCode, setAwaitingCode] = useState(false);
     const rightGap1 = useMediaQuery({
       query: '(max-width: 340px)'
     });
@@ -57,17 +61,27 @@ const UploadPage = () => {
         data.append('file', files[i]);
       }
       let response = await axios.post(`${apiBaseURL}/upload`, 
-      data)
+      data, {
+        onUploadProgress: (data) => {
+          const percent = Math.round((data.loaded/data.total)*100);
+          setUploaded(percent);
+          if(percent === 100) {
+            setAwaitingCode(true);
+          }
+        }
+      })
         .then((response) => {
           console.log(response);
           setUploading(false);
           setUploadedOnce(true);
+          setAwaitingCode(false);
           console.log('Upload Success');
         })
         .catch((e) => {
           console.log(e);
           setUploading(false);
           setUploadedOnce(true);
+          setAwaitingCode(false);
           console.log('Upload Error');
         });
       console.log(response);
@@ -102,12 +116,11 @@ const UploadPage = () => {
           justify="center"
           >
             <Grid item xs={12} md={12} lg={12}>
+              {!uploading?
               <div className="uploadBox" {...getRootProps()}>
                 <input {...getInputProps()} />
                 <p className="text" style={{ width: uploadWidth, color: '#EE4C7C' }}>
                   {
-                    uploading?
-                    <SyncLoader color='#EE4C7C' loading={uploading} style={{ fontSize: cloudSize }} />:
                     !uploadedOnce?
                     <CloudUploadOutlinedIcon className="animateUploadPop" sx={{ fontSize: cloudSize }}/>:
                     <CloudDoneOutlinedIcon className="animateUploadPop" sx={{ fontSize: cloudSize }}/>
@@ -120,8 +133,6 @@ const UploadPage = () => {
                       }}
                     >
                       {
-                        uploading?
-                        <span></span>:
                         !uploadedOnce?
                         <span>Drop files here!!!</span>:
                         <span>Done! Upload some more :)</span>
@@ -129,8 +140,21 @@ const UploadPage = () => {
                     </h2>
                   </Font>
                 </p>
-                {/* Hello There */}
               </div>
+              :
+              awaitingCode?
+              <div style={{ marginTop: '2vh' }}>
+                <SyncLoader color='#EE4C7C' loading={true} style={{ fontSize: cloudSize }} />
+              </div>
+              :
+              <div style={{ width: cloudSize, height: cloudSize, marginTop: '2vh' }}>
+                <CircularProgressbar value={uploaded} text={`${uploaded}%`} 
+                styles={buildStyles({
+                  pathColor: '#EE4C7C',
+                  textColor: '#EE4C7C',
+                })} />
+              </div>
+              }
             </Grid>
             {
               uploadedOnce ?
