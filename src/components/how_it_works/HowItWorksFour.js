@@ -7,6 +7,12 @@ import { styled } from '@mui/material/styles';
 import { useMediaQuery } from 'react-responsive';
 import Image from '../../assets/Step4.png';
 import './HowItWorks.css';
+import AOS from "aos";
+import "aos/dist/aos.css";
+AOS.init({
+  duration: 1200,
+});
+
 
 const HowItWorksFour = () => {
     const screenWidth = useMediaQuery({
@@ -25,7 +31,7 @@ const HowItWorksFour = () => {
                     <Grid item lg={6} sm={12} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                         <Box sx={{ textAlign: 'center' }}>
                             <Font family="Acme">
-                                <h3 style={{ fontSize: '5vh', marginBottom: 0 }}>
+                                <h3 style={{ fontSize: '5vh', marginBottom: 0 }} data-aos="fade-right">
                                     <span>4. View your files</span>
                                 </h3>
                             </Font>

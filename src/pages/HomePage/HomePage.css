@@ -11,6 +11,7 @@ section {
 
 .one {
     height: 90vh;
+    position: relative;
 }
 
 .two {
@@ -83,6 +84,26 @@ section {
     color: #E3E2DF;
     -ms-transform: rotate(-45deg)r;
     transform: rotate(-45deg);
+}
+
+#howItWorksButton {
+    -webkit-animation: howItWorksMover 0.5s infinite  alternate;
+    animation: howItWorksMover 0.5s infinite  alternate;
+}
+
+#howItWorksButton {
+    -webkit-animation: howItWorksMover 0.5s infinite  alternate;
+    animation: howItWorksMover 0.5s infinite  alternate;
+}
+
+@-webkit-keyframes howItWorksMover {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-10px); }
+}
+
+@keyframes howItWorksMover {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-10px); }
 }
 
 

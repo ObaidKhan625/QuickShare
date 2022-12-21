@@ -7,6 +7,11 @@ import Image from '../../assets/Step1.png';
 import { styled } from '@mui/material/styles';
 import { useMediaQuery } from 'react-responsive';
 import './HowItWorks.css';
+import AOS from "aos";
+import "aos/dist/aos.css";
+AOS.init({
+  duration: 1200,
+});
 
 const HowItWorksOne = () => {
     const screenWidth = useMediaQuery({
@@ -39,7 +44,7 @@ const HowItWorksOne = () => {
                 <Grid item lg={6} sm={12} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                     <Box sx={{ textAlign: 'center' }}>
                         <Font family="Acme">
-                            <h3 style={{ fontSize: '5vh', marginBottom: 0 }}>
+                            <h3 style={{ fontSize: '5vh', marginBottom: 0 }} data-aos="fade-up">
                                 <span>1. Click the send button on the device through which you like to send the files</span>
                             </h3>
                         </Font>
